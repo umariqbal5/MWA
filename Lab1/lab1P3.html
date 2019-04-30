@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+
+</head>
+<body>
+
+<h2>Curryable function</h2>
+<p>See Console for output</p>
+<script>
+    //CURRYABLE FUNCTION
+    const item = {
+        name: "Avacado",
+        type: "Fruit",
+        category: "Food",
+        price: 200
+    }
+
+    function applyCoupon(item) {
+        return function (discount) {
+            item.price = item.price - (item.price*(discount/100));
+            return item;
+        }
+    }
+    console.log("applyCoupon(item)(10).price === 180");
+     console.log(applyCoupon(item)(10).price === 180);
+</script>
+</body>
+</html>

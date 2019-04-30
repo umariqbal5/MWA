@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+
+</head>
+<body>
+
+<h2>FilterWords Method</h2>
+<p>See Console for output</p>
+<script>
+
+    //SIMPLE ES6 WAY
+    String.prototype.filterWords = function(filterWords){
+       let words = this.split(' ');
+       let result="";
+       words.forEach(word =>{
+           result += filterWords.indexOf(word)===-1?word:' *** '
+       });
+       return result;
+   }
+    console.log("Common ES6: ","this house is nice".filterWords(['house', 'nice']));
+
+
+
+   //PROMIS WAY
+    String.prototype.filterPromis = function(filterWords){
+       return new Promise((resolve, reject) => {
+           let words = this.split(' ');
+           let result='';
+           words.forEach(word =>{
+               result += filterWords.indexOf(word)===-1?word:' *** '
+           });
+             resolve(result);
+       });
+   };
+    "this house is nice".filterPromis(['house', 'nice']).then(data=> console.log("Promis: ",data));
+
+
+    //ASYNC WAY
+    String.prototype.FilterWordsAsync = filterAsync;
+   async function filterAsync(filterWords){
+       let words = this.split(' ');
+       let result="";
+       words.forEach(word =>{
+           result += filterWords.indexOf(word)===-1?word:' *** '
+       });
+       return result;
+   }
+   async function call(){
+       console.log("Async: ",await "this house is nice".FilterWordsAsync(["house","nice"]));
+   }
+   call();
+
+
+   //OBSERVABLES
+    const {from} = rxjs;
+    const {reduce, map , filter} = rxjs.operators;
+
+    String.prototype.filterByObserve = function(filterWords){
+        const data = this.split(' ')
+        from(data)
+            .pipe(
+                map(obj => filterWords.indexOf(obj)===-1?obj:'***'),
+                reduce((obj, current) => obj +' '+current )
+            )
+            .subscribe(obj => console.log("Observable: ",obj))
+    }
+    "this house is nice".filterByObserve(['house','nice']);
+
+
+</script>
+</body>
+</html>
