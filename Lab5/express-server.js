@@ -13,19 +13,28 @@ app.get('/users',async function(req,res){
     let pageNum = parseInt(req.query.page || 1);
     let nextPage = pageNum+1;
     res.status(200);
+
+    //header Config
     res.header({
         'content-Type':'text/json',
-        "Link": "/users?page="+nextPage,
+        "Link": `</users/?page=${nextPage}>; rel=next,</users/?page=20>; rel=last`,
         'Cache-Control': 'private, max-age=86400',
         'Last-Modified': new Date()
     });
 
     const usersData =await getUsers();
-    res.send(usersData['data']);
-    res.end();
+    // res.send(usersData['data']);
+        res.json({
+            status:200,
+            data: usersData.data.results
+        });
+
     } catch(e) {
         console.log(e.stack)
-        res.status(500).send({error: e.message})
+        res.status(500).send({
+            status: e.code || 500,
+            message: e.message
+        });
     }
 });
 
