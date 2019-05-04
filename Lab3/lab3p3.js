@@ -13,29 +13,29 @@ const fs = require('fs')
 
 http.createServer(function(req,res){
     res.writeHead(200, {'Content-Type':'text'});
-    const file = fs.readFileSync(__dirname + '/lab3p1.js','utf8');
+    const file = fs.readFileSync(__dirname + '/200MB.zip','utf8');
     res.write(file);
     res.write('loading..');
     res.end();
-}).listen(1337, ()=> console.log('127.0.0.1:1337'));
+}).listen(1337, ()=> console.log('http://127.0.0.1:1337'));
 
 
 //READ FILE ASYNC
 http.createServer(function(req,res){
     res.writeHead(200,{'Content-Type':'text'});
-    fs.readFile(__dirname + '/lab3p3.js','utf8',function (err,data) {
+    fs.readFile(__dirname + '/200MB.zip','utf8',function (err,data) {
         res.end(data);
     });
     res.write('loading..');
 
-}).listen(8181,()=>console.log('127.0.0.1:8181'))
+}).listen(8181,()=>console.log('http://127.0.0.1:8181'))
 
 
 
 //USE STREAMS
 http.createServer(function(req,res){
-    const file = fs.createReadStream(__dirname+ '/lab3p3.js').pipe(res);
-}).listen(8282,()=>console.log('127.0.0.1:8282'));
+    const file = fs.createReadStream(__dirname+ '/200MB.zip').pipe(res);
+}).listen(8282,()=>console.log('http://127.0.0.1:8282'));
 
 
 

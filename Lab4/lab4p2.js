@@ -9,8 +9,8 @@ subject.subscribe(doParseFile);
 
 http
     .createServer((req, res) => subject.next({req, res}))
-    .listen(4040)
-    .on('listening', () => console.log("Open http://localhost:4040/ in your browser."));
+    .listen(8282)
+    .on('listening', () => console.log("http://localhost:8282/"));
 
 function doParseFile({req, res}) {
     const query = url.parse(req.url, true).query;
