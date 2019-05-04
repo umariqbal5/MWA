@@ -22,8 +22,8 @@ app.get('/users',async function(req,res){
         'Last-Modified': new Date()
     });
 
+    //Fetching Data Async
     const usersData =await getUsers();
-    // res.send(usersData['data']);
         res.json({
             status:200,
             data: usersData.data.results
