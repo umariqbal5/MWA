@@ -4,10 +4,9 @@
 // the "boom" event, printing "Athlete is working out" every
 // time it gets one.
 
-var Gym = require('./Gym');
-var gym = new Gym();
-    gym.on('boom',function(){
-       console.log('Athlete is working out')
-    });
 
-gym.emit('boom');
+const {Gym} = require('./Gym');
+
+const gym = new Gym();
+gym.on('boom', () => console.log('Athlete is working out.'));
+gym.boom();

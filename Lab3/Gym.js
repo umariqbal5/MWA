@@ -1,16 +1,14 @@
-function Gym ( ) {
-    this.events = {};// Empty Obie ct
-}
+const EventEmitter = require('events');
 
-Gym.prototype.on = function (type, listener){
-    this.events[type] = this.events[type] || [];
-    this.events[type].push(listener);
-}
-
-Gym.prototype.emit =function (type) {
-            if (this.events[type]) {
-                this.events[type].forEach(function (listener){listener()});
-            }
+class Gym extends EventEmitter {
+    constructor() {
+        super();
     }
 
-    module.exports = Gym;
+    boom() {
+        this.emit('boom');
+        setTimeout(() => this.boom(), 1000);
+    }
+}
+
+exports.Gym = Gym;
