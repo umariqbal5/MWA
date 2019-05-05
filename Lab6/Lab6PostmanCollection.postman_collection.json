@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "191d4dd0-abe7-4b6f-b304-a87fce62b92f",
+		"name": "Lab6PostmanCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/api/grades",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"grades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/api/grade/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"grade",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": \"2\",\n        \"name\": \"Umar\",\n        \"course\": \"MPP\",\n        \"grade\": \"A\"\n   }"
+				},
+				"url": {
+					"raw": "localhost/api/grades",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"grades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"1\",\n\t\"name\": \"ali\",\n\t\"course\":\"MWA\",\n\t\"grade\": \"A\"\n}"
+				},
+				"url": {
+					"raw": "localhost/api/grade",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"grade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost/api/grade/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"grade",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
