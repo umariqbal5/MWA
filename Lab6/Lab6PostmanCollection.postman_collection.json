@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "191d4dd0-abe7-4b6f-b304-a87fce62b92f",
+		"_postman_id": "e40a580a-d0b1-429d-940d-f7e012e6a07a",
 		"name": "Lab6PostmanCollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -37,13 +37,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/api/grade/1",
+					"raw": "localhost/api/grades/1",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"api",
-						"grade",
+						"grades",
 						"1"
 					]
 				}
@@ -64,7 +64,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n        \"id\": \"2\",\n        \"name\": \"Umar\",\n        \"course\": \"MPP\",\n        \"grade\": \"A\"\n   }"
+					"raw": " {\n        id: \"2\",\n        \"name\": \"Umar\",\n        \"course\": \"MPP\",\n        \"grade\": \"A\"\n   }"
 				},
 				"url": {
 					"raw": "localhost/api/grades",
@@ -96,13 +96,13 @@
 					"raw": "{\n\t\"id\":\"1\",\n\t\"name\": \"ali\",\n\t\"course\":\"MWA\",\n\t\"grade\": \"A\"\n}"
 				},
 				"url": {
-					"raw": "localhost/api/grade",
+					"raw": "localhost/api/grades",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"api",
-						"grade"
+						"grades"
 					]
 				}
 			},
@@ -118,13 +118,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost/api/grade/1",
+					"raw": "localhost/api/grades/1",
 					"host": [
 						"localhost"
 					],
 					"path": [
 						"api",
-						"grade",
+						"grades",
 						"1"
 					]
 				}

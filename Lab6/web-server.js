@@ -2,13 +2,15 @@ const Grade = require('./grades');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const Logger = require('./Logger')
+const Logger = require('./Logger');
 const app = express();
-
+// express.Router() //
 //allow cors api calls
 app.use(cors());
+
 //body parser to accept Post bodies
 app.use(bodyParser.json()); // support json encoded bodies
+
 const gradesList = [];
 //initialize morgan middleware
 app.use(Logger.morgan)
@@ -17,18 +19,20 @@ app.use(Logger.morgan)
 app.get('/api/grades',function getAll(request, response) {
     response.json({'data':gradesList})
 });
-app.get('/api/grade/:id',function (req,res) {
+app.get('/api/grades/:id',function (req,res) {
     const gradeIndex = gradesList.find(x => x.id == req.params.id)
     // const grade = gradesList[gradeIndex]
     res.json({'data':gradeIndex})
 });
+
 //Custom middle ware to test JSON input
 app.post('/api/grades',function (req,res,next) {
-    try{
-        console.log(JSON.stringify(req.body))
-        JSON.parse(JSON.stringify(req.body));
+    //Middleware
+    console.log(typeof req.body)
+    console.log(req.body)
+    if(typeof req.body == "object"){
         return next();
-    }catch(e){
+    }else{
         console.log(e.message);
         res.status(500).json({"msg":"Not valid JSON data"})
     }
@@ -36,14 +40,14 @@ app.post('/api/grades',function (req,res,next) {
         const grade = new Grade(request.body.id,request.body.name,request.body.course,request.body.grade);
         gradesList.push(grade);
         response.status(200).send(request.body)
-    })
+    });
+
 //PUT request
-app.put('/api/grade',function (req,res,next) {
-        try{
-            console.log(JSON.stringify(req.body))
-            JSON.parse(JSON.stringify(req.body));
+app.put('/api/grades',function (req,res,next) {
+    //Middleware
+        if(typeof req.body == "object"){
             return next();
-        }catch(e){
+        }else{
             console.log(e.message);
             res.status(500).json({"msg":"Not valid JSON data"})
         }
@@ -56,10 +60,10 @@ app.put('/api/grade',function (req,res,next) {
         else{
             res.status(200).send({"msg":"Record not found"})
         }
-
     });
+
 //DELETE request
-app.delete('/api/grade/:id',function (req,res) {
+app.delete('/api/grades/:id',function (req,res) {
     const idx =gradesList.findIndex(x => x.id == req.params.id);
     if(idx != -1){
         gradesList.splice(idx,1);
