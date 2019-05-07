@@ -1,0 +1,10 @@
+{
+  "_id": "Object",
+  "name": "string",
+  "author": "string",
+  "isbn": "string",
+  "keywords" : [
+    "tag1",
+    "tag2"
+  ]
+}
