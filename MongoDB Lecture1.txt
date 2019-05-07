@@ -1,0 +1,32 @@
+//will create a new DB
+use myNewDB
+
+//refereing to this myNewDB 
+db
+
+//command for showing all collections
+show collections
+
+//show all records // it will create new collection automatically
+db._collectionName.find()
+
+//insert new document //it auto add (_id) as unique id if we dont add in our data
+db.mwa.insert({name: 'umar'})
+db.mwa.insert({id: 5, name: 'umar', age: 20 , hobies: ['sleeping', 'programming']})
+
+//Update if record exists otherwise add new record
+db.mwa.save({id:5, name: 'ali'}) 
+
+
+//insert 10 docs by for loop in mongo cmd // bcz mongo cmd use v8
+for(let i=0; i<10; i++) db.mwa.insert('v':i)
+
+//find one
+db.collection.findOne({})
+//query equalent to where clause
+db.collection.findOne({query})
+db.collection.findOne({query}, {projection})
+db.collection.findOne({_id:5}, {name:1, age:0}) //1 = true , 0 = false
+
+//count
+db.collections.count({age:29})
