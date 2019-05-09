@@ -1,0 +1,29 @@
+//Start Mongo
+mongo "mongodb+srv://cluster0-zktsw.mongodb.net/test" --username admin
+
+//Import Json
+mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-zktsw.mongodb.net:27017,cluster0-shard-00-01-zktsw.mongodb.net:27017,cluster0-shard-00-02-zktsw.mongodb.net:27017 --ssl --username admin --password <<PASSWORD>> --authenticationDatabase admin --db homework07 --collection hotels --type json --file restaurants.json
+
+//Exercise Queries
+ db.hotels.find()
+ db.hotels.find().projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find().projection({_id:0, restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find().projection({_id:0, restaurant_id:1, name:1, district:1, "address.zipcode":1})
+ db.hotels.find({district:'Bronx'})
+ db.hotels.find({district:'Bronx'}).limit(5)
+ db.hotels.find({district:'Bronx'}).skip(5)
+ db.hotels.find({"address.coord":{$elemMatch: {$lt:-95.754168}}})
+ db.hotels.find({cuisine: {$ne: 'American '},"address.coord": {$elemMatch: {$lt: -65.754168}}, grades: {$elemMatch: {score:{$gt: 70}}}})
+ db.hotels.find({name:{$regex: '^Wil'}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({name:{$regex:'ces$'}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({name:{$regex:'Reg'}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({district:'Bronx', cuisine:{$in : ['American ','Chinese']}}).pretty()
+ db.hotels.find({district: {$in : ['Staten Island', 'Queens', 'Bronx', 'Brooklyn']}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({district:{$not: {$in : ['Staten Island', 'Queens', 'Bronx', 'Brooklyn']}}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({grades: {$elemMatch:{score: {$lte: 10} }}}).projection({restaurant_id:1, name:1, district:1, cuisine:1})
+ db.hotels.find({"address.coord.1": {$gt:42, $lte:52}}).projection({restaurant_id:1, name:1, address: 1})
+ db.hotels.find().sort({name:1})
+ db.hotels.find().sort({name:-1})
+ db.hotels.find().sort({cuisine:1, district:-1})
+ db.hotels.find({"address.coord": {$elemMatch: {$type: "double"}}})
+ db.hotels.find({name:{$regex:'^Mad'}}).projection({name:1, district:1, "address.coord":1, cuisine:1})
