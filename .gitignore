@@ -3,4 +3,5 @@
 *.cmd
 *.iml
 .idea/
-.node_modules/
+node_modules/*
+Lab3/200MB.zip
