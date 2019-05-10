@@ -1,3 +1,5 @@
 # MWA
-MWA Course CS-572
-Year 2019
+<b>MWA Course CS-572</b>
+Year 2019<br>
+Masters in Computer Science<br>
+Maharishi University of Management
