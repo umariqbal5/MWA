@@ -1,0 +1,6 @@
+//MOngoDB Aggregation Queries
+
+db.zips.aggregate([{$match: {state: 'WA'}}])
+db.zips.aggregate([{$match: {state: 'WA', pop: {$lt: 5000}}}])
+db.zips.aggregate([{$group: {_id:{'city':"$city", 'state':'$state'}, zip_counts: {$sum:1}, zips: {$push: "$_id"}}}, {$match: {"zip_counts": {$gt: 1}}}, {$project: {city: '$_id.city', state: '$_id.state', _id:0}}, {$sort: {'state':1, 'city':1}}])
+db.zips.aggregate([{$group: {_id: {'city': '$city', 'state': '$state'}, total_pop: {$sum: '$pop'}}}, {$sort:{'total_pop':1}},{$group: {_id: '$_id.state', 'city':{$first: '$_id.city'}, 'pop':{$first: '$total_pop'}}}, {$sort: {_id:1}}])
