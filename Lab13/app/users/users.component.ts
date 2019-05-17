@@ -8,7 +8,7 @@ import {DataServiceService} from "../data-service.service";
       <tr><th>Name</th> <th>Email</th></tr>
       <tr *ngFor="let user of users">
         <td>
-         <a [routerLink]="['/userdetail/', user.login.uuid]">{{user.name.first}} {{user.name.last}}</a> 
+         <a [routerLink]="['userdetail/', user.login.uuid]">{{user.name.first}} {{user.name.last}}</a> 
         </td>
         <td>
           {{user.email}}

@@ -7,22 +7,22 @@ import {RouterModule, Routes} from "@angular/router";
 import {UsersComponent} from "./users/users.component";
 import {UsersModule} from "./users/users.module";
 import {UserdetailsComponent} from "./users/userdetails.component";
+import { NotFoundComponent } from './not-found-component';
 
-const My_Routes: Routes = [
-  // {path: '', component: AppComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'userdetail/:uuid', component: UserdetailsComponent}
+const myRoutes: Routes = [
+  {path: 'users', loadChildren:'./users/users.module#UsersModule'},
+  {path: '404', component: NotFoundComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    UsersModule,
-    RouterModule.forRoot(My_Routes)
+    RouterModule.forRoot(myRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
